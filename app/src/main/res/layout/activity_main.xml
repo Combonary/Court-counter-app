@@ -47,7 +47,7 @@
                 tools:text="@string/team"/>
 
             <TextView
-                android:id="@+id/teamAScore"
+                android:id="@+id/team_a_score"
                 android:layout_width="match_parent"
                 android:layout_height="67dp"
                 android:gravity="center"

@@ -1,15 +1,16 @@
 package pamtech.com.courtcounter;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     int score;//team A score
     int scoreB;//team B score
+    TextView scoreViewA;
+    TextView scoreViewB;
 
     //Button one = findViewById(R.id.onePoint);
     //Button two = findViewById(R.id.twoPoints);
@@ -20,8 +21,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        scoreViewA = findViewById(R.id.team_a_score);
+        scoreViewB = findViewById(R.id.team_b_score);
+
         displayForTeamA(getScore());//show team A score at launch
         displayForTeamB(getScoreB());//show team B score at launch
+
+        if(savedInstanceState != null){
+            Integer scoreTA = savedInstanceState.getInt("TeamA");
+            Integer scoreTB = savedInstanceState.getInt("TeamB");
+
+            score = scoreTA;
+            scoreB = scoreTB;
+            scoreViewA.setText(""+ score);
+            scoreViewB.setText(""+ scoreB);
+
+        }
 
     }
 
@@ -30,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
      * @param score current team point total
      */
     public void displayForTeamA(int score){
-        TextView scoreView = findViewById(R.id.teamAScore);
-        scoreView.setText(String.valueOf(score));
+        scoreViewA.setText(String.valueOf(score));
     }
 
     /**
@@ -39,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
      * @param scoreB current team point total
      */
     public void displayForTeamB(int scoreB){
-        TextView scoreView = findViewById(R.id.team_b_score);
-        scoreView.setText(String.valueOf(scoreB));
+        scoreViewB.setText(String.valueOf(scoreB));
     }
 
     /**
@@ -158,4 +171,11 @@ public class MainActivity extends AppCompatActivity {
         freeThrow();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("TeamA",score);
+        outState.putInt("TeamB",scoreB);
+
+    }
 }
