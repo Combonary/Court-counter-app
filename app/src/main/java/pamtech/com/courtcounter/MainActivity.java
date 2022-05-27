@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         displayForTeamB(getScoreB());//show team B score at launch
 
         if(savedInstanceState != null){
-            Integer scoreTA = savedInstanceState.getInt("TeamA");
-            Integer scoreTB = savedInstanceState.getInt("TeamB");
+            int scoreTA = savedInstanceState.getInt("TeamA");
+            int scoreTB = savedInstanceState.getInt("TeamB");
 
             score = scoreTA;
             scoreB = scoreTB;
